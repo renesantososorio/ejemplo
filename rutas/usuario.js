@@ -10,7 +10,7 @@ ruta.post("/login",(req,res)=>{
     Usuario.findAll({where:{usuario:req.body.usuario,password:req.body.password}})
     .then((usuario)=>{
         if(usuario!=""){
-            req.session.usuario="hola";
+            req.session.usuario=usuario[0].nombre;
             res.redirect("/bienvenido");
         }
         else{
@@ -30,7 +30,7 @@ ruta.get("/bienvenido",(req,res)=>{
         res.redirect("login");
     }
     else{
-        res.send("Estás en la página solo para usuarios");
+        res.render("bienvenido",{usuario:req.session.usuario});
     }
 });
 
@@ -49,7 +49,6 @@ ruta.get("/",(req,res)=>{
         console.log("Error .................."+err)
         res.render("mostrarUsuario");
     });
-    
 });
 
 ruta.get("/nuevoUsuario",(req, res)=>{
