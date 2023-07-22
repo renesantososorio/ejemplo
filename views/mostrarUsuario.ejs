@@ -1,0 +1,30 @@
+<%- include("templates/encabezado") %>
+<%- include("templates/menu") %>
+<h1>INICIO</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Password</th>
+            <th>Editar / Borrado lógico / Borrado físico</th>
+        </tr>
+    </thead>
+    <tbody>
+        <%
+        Usuarios.forEach((usuario)=>{
+        %>
+        <tr>
+            <td><%= usuario.id %></td>
+            <td><%= usuario.nombre %></td>
+            <td><%= usuario.usuario %></td>
+            <td><%= usuario.password %></td>
+            <td><a href="/editarUsuario/<%= usuario.id %>">Editar</a> / <a href="/borradoFisico/<%= usuario.id %>">Borrado físico</a> / <a href="/borradoLogico/<%= usuario.id %>">Borrado lógico</a></td>
+        </tr>
+        <%
+        });
+        %>
+    </tbody>
+</table>
+<%- include("templates/pie") %>
